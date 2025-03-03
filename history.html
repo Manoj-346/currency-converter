@@ -78,8 +78,26 @@
         <a href="history.html">History</a>
         <a href="settings.html">Settings</a>
     </nav>
-    <div id="history"></div>
-    <button id="btn">click here to get history</button>
+
+    <div class="container">
+        <h2>Currency Converter</h2>
+        <form id="converterForm">
+            <input type="number" id="amount" placeholder="Amount" required>
+            <select id="fromCurrency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <!-- Add more currencies as needed -->
+            </select>
+            <select id="toCurrency">
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+                <!-- Add more currencies as needed -->
+            </select>
+            <button type="submit">Convert</button>
+        </form>
+        <div id="conversionResult"></div>
+    </div>
+
     <div class="container">
         <h2>Exchange Rate History</h2>
         <table id="historyTable">
@@ -94,11 +112,45 @@
         <button onclick="clearHistory()">Clear History</button>
     </div>
 
-    <!-- <script>
+    <script>
+        document.getElementById("converterForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            const amount = parseFloat(document.getElementById("amount").value);
+            const fromCurrency = document.getElementById("fromCurrency").value;
+            const toCurrency = document.getElementById("toCurrency").value;
+
+            // Simulate conversion (replace this with actual conversion logic)
+            const conversionRate = 1.2; // Example conversion rate
+            const convertedAmount = (amount * conversionRate).toFixed(2);
+
+            // Display the result
+            document.getElementById("conversionResult").innerText = 
+                `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
+
+            // Save to history
+            saveToHistory(amount, fromCurrency, toCurrency, convertedAmount);
+            loadHistory(); // Refresh the history table
+        });
+
+        function saveToHistory(amount, from, to, convertedAmount) {
+            let history = JSON.parse(localStorage.getItem("exchangeHistory")) || [];
+            const entry = {
+                date: new Date().toLocaleString(),
+                amount: amount,
+                from: from,
+                to: to,
+                convertedAmount: convertedAmount
+            };
+            history.push(entry);
+            localStorage.setItem("exchangeHistory", JSON.stringify(history));
+        }
+
         function loadHistory() {
             let history = JSON.parse(localStorage.getItem("exchangeHistory")) || [];
             const table = document.getElementById("historyTable");
 
+            // Clear existing rows except for the header
             table.innerHTML = `<tr>
                 <th>Date</th>
                 <th>Amount</th>
@@ -118,7 +170,6 @@
                 table.innerHTML += row;
             });
         }
-
         function clearHistory() {
             localStorage.removeItem("exchangeHistory");
             loadHistory(); 
