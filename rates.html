@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchange Rates & Currency Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url("C:/Users/manoj/Downloads/c7.jpg") no-repeat center center fixed; /* Add your background image here */
+            background-size: cover; /* Cover the entire background */
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #000000; /* Dark green for navigation bar */
+            padding: 10px;
+        }
+        nav a {
+            color: white; /* White text for links */
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            color: #ffcc00; /* Change color on hover */
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for container */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 50px auto;
+        }
+        h2 {
+            color: #2E8B57; /* Dark green for headings */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        th {
+            background-color: #007BFF; /* Blue for table header */
+            color: white;
+        }
+        td {
+            color: #333; /* Dark gray for table data */
+        }
+        .converter {
+            margin-top: 20px;
+        }
+        select, input, button {
+            margin: 5px;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #2E8B57; /* Dark green border for inputs and selects */
+            border-radius: 5px; /* Rounded corners for inputs and selects */
+        }
+        button {
+            background-color: #2E8B57; /* Dark green background for button */
+            color: white; /* White text for button */
+            border: none; /* No border */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth transition for background color */
+        }
+        button:hover {
+            background-color: #1c5e3a; /* Darker green on hover */
+        }
+        #result {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #2E8B57; /* Dark green for result text */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="rates.html">Exchange Rates</a>
+        <a href="history.html">History</a>
+        <a href="settings.html">Settings</a>
+    </nav>
+
+    <div class="container">
+        <h2>Exchange Rates</h2>
+        <table id="ratesTable">
+            <tr>
+                <th>Currency</th>
+                <th>Rate (to USD)</th>
+            </tr>
+        </table>
+
+        <div class="converter">
+            <h3>Currency Converter</h3>
+            <input type="number" id="amount" placeholder="Enter amount" />
+            <select id="fromCurrency"></select>
+            <select id="toCurrency"></select>
+            <button onclick="convertCurrency()">Convert</button>
+            <p id="result"></p>
+        </div>
+    </div>
+    <script>
+        const exchangeRates = {
+            "USD($)": 1, "AED": 3.67, "AFN": 73.61, "ALL": 94.77, "AMD": 396.25, "ANG": 1.79, "AOA": 920.02, "ARS": 1059.17,
+            "AUD": 1.57, "AWG": 1.79, "AZN": 1.7, "BAM": 1.87, "BBD": 2, "BDT": 121.51, "BGN": 1.87, "BHD": 0.38,
+            "BIF": 2967.75, "BMD": 1, "BND": 1.34, "BOB": 6.91, "BRL": 5.71, "BSD": 1, "BTN": 86.97, "BWP": 13.82,
+            "BYN": 3.27, "BZD": 2, "CAD": 1.42, "CDF": 2854.99, "CHF": 0.9, "CLP": 948.09, "CNY": 7.28, "COP": 4127.91,
+            "CRC": 506.13, "CUP": 24, "CVE": 105.49, "CZK": 24, "DJF": 177.72, "DKK": 7.14, "DOP": 62.16, "DZD": 134.95,
+            "EGP": 50.63, "ERN": 15, "ETB": 127.49, "EUR": 0.96, "FJD": 2.3, "GBP": 0.79, "GEL": 2.82, "GHS": 15.56,
+            "GNF": 8616.94, "HKD": 7.78, "HNL": 25.51, "HRK": 7.21, "HTG": 130.92, "HUF": 383.81, "IDR": 16313.6,
+            "ILS": 3.55, "INR": 86.97, "IQD": 1308.11, "IRR": 41999.75, "ISK": 140.26, "JOD": 0.71, "JPY": 151.88,
+            "KES": 129.31, "KRW": 1440.98, "KWD": 0.31, "KZT": 499.54, "LBP": 89500, "LKR": 295.67, "MAD": 9.98,
+            "MYR": 4.45, "NGN": 1508.73, "NZD": 1.75, "OMR": 0.38, "PEN": 3.7, "PHP": 58.22, "PKR": 279.46,
+            "PLN": 3.97, "QAR": 3.64, "RUB": 91.48, "SAR": 3.75, "SEK": 10.72, "SGD": 1.34, "THB": 33.67,
+            "TRY": 36.31, "UAH": 41.59, "UGX": 3681.54, "VND": 25528.49, "XAF": 627.55, "YER": 247.95, "ZAR": 18.41,
+            "ZMW": 28.1
+        };
+
+        const table = document.getElementById("ratesTable");
+        const fromCurrency = document.getElementById("fromCurrency");
+        const toCurrency = document.getElementById("toCurrency");
+
+        for (const currency in exchangeRates) {
+            table.innerHTML += `<tr><td>${currency}</td><td>${exchangeRates[currency]}</td></tr>`;
+            fromCurrency.innerHTML += `<option value="${currency}">${currency}</option>`;
+            toCurrency.innerHTML += `<option value="${currency}">${currency}</option>`;
+        }
+        fromCurrency.value = "USD($)";
+        toCurrency.value = "EUR";
+
+        function convertCurrency() {
+            const amount = parseFloat(document.getElementById("amount").value);
+            const from = fromCurrency.value;
+            const to = toCurrency.value;
+
+            if (isNaN(amount) || amount <= 0) {
+                document.getElementById("result").innerText = "Please enter a valid amount.";
+                return;
+            }
+
+            const usdAmount = amount / exchangeRates[from]; 
+            const convertedAmount = usdAmount * exchangeRates[to];
+            document.getElementById("result").innerText = `${amount} ${from} = ${convertedAmount.toFixed(2)} ${to}`;
+        }
+    </script>
+</body>
+</html>

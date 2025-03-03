@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url("C:/Users/manoj/Downloads/c7.jpg"); /* Replace with your image path */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            color: white; /* Change text color for better visibility */
+            font-family: Arial, sans-serif; /* Set a default font */
+        }
+        nav {
+            background-color: #000000; /* Dark green for the nav */
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white; /* Link color */
+            margin: 0 15px; /* Spacing between links */
+            text-decoration: none; /* Remove underline */
+        }
+        nav a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for the container */
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: 50px auto; /* Center the container */
+            text-align: center;
+            color: #333; /* Dark text for better readability */
+        }
+        input, select, button {
+            margin: 10px 0; /* Spacing for input, select, and button */
+            padding: 10px;
+            width: 100%; /* Full width */
+            border: 1px solid #2E8B57; /* Dark green border */
+            border-radius: 5px; /* Rounded corners */
+        }
+        button {
+            background-color: #28a745; /* Green background for the button */
+            color: white; /* White text */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+        button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+        h2 {
+            color: #2E8B57; /* Dark green for headings */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="4.html">Home</a>
+        <a href="rates.html">Exchange Rates</a>
+        <a href="history.html">History</a>
+        <a href="settings.html">Settings</a>
+    </nav>
+
+    <div class="container">
+        <h2>Currency Converter</h2>
+        <label>Amount:</label>
+        <input type="number" id="amount" placeholder="Enter amount">
+        
+        <label>From:</label>
+        <select id="fromCurrency"></select>
+        
+        <label>To:</label>
+        <select id="toCurrency"></select>
+
+        <button onclick="convertCurrency()">Convert</button>
+
+        <h3>Converted Amount: <span id="result">0</span></h3>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

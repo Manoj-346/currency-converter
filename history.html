@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchange History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url('background.jpg'); /* Change to your image */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #000000; /* Dark green for navigation bar */
+            padding: 10px;
+        }
+        nav a {
+            color: white; /* White text for links */
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            color: #ffcc00; /* Change color on hover */
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for container */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        h2 {
+            color: #2E8B57; /* Dark green for headings */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        th {
+            background-color: #007BFF; /* Blue for table header */
+            color: white;
+        }
+        td {
+            color: #333; /* Dark gray for table data */
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            background: #2E8B57; /* Dark green background for button */
+            color: white; /* White text for button */
+            border: none;
+            border-radius: 5px; /* Rounded corners for button */
+            cursor: pointer;
+            transition: background-color 0.3s; /* Smooth transition for background color */
+        }
+        button:hover {
+            background: #1c5e3a; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="rates.html">Exchange Rates</a>
+        <a href="history.html">History</a>
+        <a href="settings.html">Settings</a>
+    </nav>
+    <div id="history"></div>
+    <button id="btn">click here to get history</button>
+    <div class="container">
+        <h2>Exchange Rate History</h2>
+        <table id="historyTable">
+            <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Converted Amount</th>
+            </tr>
+        </table>
+        <button onclick="clearHistory()">Clear History</button>
+    </div>
+
+    <!-- <script>
+        function loadHistory() {
+            let history = JSON.parse(localStorage.getItem("exchangeHistory")) || [];
+            const table = document.getElementById("historyTable");
+
+            table.innerHTML = `<tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Converted Amount</th>
+            </tr>`;
+
+            history.forEach(entry => {
+                let row = `<tr>
+                    <td>${entry.date}</td>
+                    <td>${entry.amount}</td>
+                    <td>${entry.from}</td>
+                    <td>${entry.to}</td>
+                    <td>${entry.convertedAmount}</td>
+                </tr>`;
+                table.innerHTML += row;
+            });
+        }
+
+        function clearHistory() {
+            localStorage.removeItem("exchangeHistory");
+            loadHistory(); 
+        }
+
+        window.onload = loadHistory;
+    </script> -->
+    <script src="script.js"></script>
+
+</body>
+</html>

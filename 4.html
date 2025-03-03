@@ -1,0 +1,200 @@
+
+Run
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-image: url("C:/Users/manoj/Downloads/c6.jpg"); /* Replace with your image URL */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent repeating the image */
+        }
+
+        nav {
+            background: black; /* Set navigation bar color to black */
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            margin: 10px;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease; /* Transition for color and transform */
+        }
+
+        nav a:hover {
+            color: #ffcc00; /* Change color on hover */
+            transform: scale(1.1); /* Scale up on hover */
+        }
+
+        .home-hover-tab, .exchange-rate-history {
+            position: absolute; /* Position the hover tab absolutely */
+            top: 50px; /* Position the hover tab below the navigation bar */
+            left: 50%; /* Center the hover tab */
+            transform: translateX(-50%); /* Adjust to center */
+            display: none; /* Hide the hover tab by default */
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            padding: 20px; /* Add padding for better readability */
+            border: 1px solid #ccc; /* Add a border for better visibility */
+            border-radius: 10px; /* Add a border radius for a rounded corner effect */
+            z-index: 1000; /* Ensure it appears above other content */
+        }
+
+        .home-hover-tab.visible, .exchange-rate-history.visible {
+            display: block; /* Show the hover tab when visible */
+        }
+
+        .container {
+            margin: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            opacity: 0; /* Start hidden for fade-in effect */
+            transform: translateY(20px); /* Start slightly below */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Transition for opacity and transform */
+            max-width: 800px; /* Limit the width for better readability */
+        }
+
+        .container.visible {
+            opacity: 1; /* Fully visible */
+            transform: translateY(0); /* Move to original position */
+        }
+
+        h2 {
+            color: #2c3e50; /* Dark blue color for h2 */
+        }
+
+        h3 {
+            color: #2980b9; /* Light blue color for h3 */
+            margin-top: 20px; /* Space above headings */
+        }
+
+        p {
+            color: #666; /* Slightly lighter text color */
+            line-height: 1.6; /* Improve readability */
+            margin: 10px 0; /* Space between paragraphs */
+        }
+
+        ol {
+            text-align: left; /* Align list items to the left */
+            display: inline-block; /* Center the list */
+            margin: 0 auto; /* Center the list */
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: rgba(20, 10, 20, 0.8); /* Semi-transparent background for footer */
+            color: white;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="4.html">Home</a>
+        <a href="index.html">Currency Converter</a>
+        <a href="#" id="exchange-rate-history-link">Exchange Rate History</a> <!-- Link to trigger the hover tab -->
+        <div class="home-hover-tab" id="home-hover-tab">
+            <h3>Welcome to the Currency Converter</h3>
+            <p>This tool allows you to convert currencies quickly and easily. Use it to check the latest exchange rates and make informed decisions.</p>
+        </div>
+        <div class="exchange-rate-history" id="exchange-rate-history">
+            <h3>Exchange Rate History</h3>
+            <p>(coming soon...).</p>
+        </div>
+    </nav>
+
+    <div class="container" id="content">
+        <h2><strong>Currency Converter</strong></h2>
+        <img src="C:/Users/manoj/Downloads/cc1.jpg" alt="Currency Converter" style="max-width: 100%; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
+
+        <p><strong>A currency converter</strong> is a tool that converts one currency's value or quantity into the relative values or amounts of other currencies.</p>
+        
+        <p><strong>Currency conversion</strong> is carried out by utilising specialised software programmes that are created to be rapid and precise. Currency converters, which are widely and freely available online, can quickly convert the value of one currency into another. You can, for example, quickly convert dollars to rupees or rupees to pounds, and vice versa.</p>
+        
+        <p>They're especially helpful for travellers who want to know how much their home currency will rise or fall when visiting a new foreign country.</p>
+        
+        <p>Furthermore, currency converters assist firms that import and export goods globally by calculating the profits made from the sale and purchase of various goods. Currency conversion also benefits forex traders by allowing them to monitor changes in exchange rate valuations in real time.</p>
+        
+        <p>A universal currency converter is so named because it allows you to convert any foreign currency into any domestic currency.</p>
+        
+        <h3><strong>How Online Currency Converter Tool Works?</strong></h3>
+        <img src="C:/Users/manoj/Downloads/cc2.jpg" alt="Currency Converter" style="max-width: 100%; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
+
+        <p>Our currency converter uses the most recent exchange rates to determine how much your money is worth in different currencies. Before converting your money, it's critical to understand the current exchange rate because its value can fluctuate due to a variety of economic factors.</p>
+        
+        <h3><strong>Importance of Online Currency Converter Tool?</strong></h3>
+        <img src="C:/Users/manoj/Downloads/cc3.jpg" alt="Currency Converter" style="max-width: 60%; float: left; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
+
+        <p>Here are some of the benefits of using an online currency converter, whether you're investing, collecting, or planning a trip abroad:</p>
+        <ol>
+            <li><strong>Portability:</strong> A smartphone can be used to access an online calculator from anywhere in the world.</li>
+            <li><strong>Reliability:</strong> Currency converters are trustworthy because they rely on publicly available data from FOREX markets.</li>
+            <li><strong>Speed:</strong> Currency converters are quick and can display the result in seconds.</li>
+            <li><strong>Simple to use:</strong> Learning how to use a currency converter takes a relatively short amount of time.</li>
+            <li><strong>Travel-friendly:</strong> An online currency converter makes it simple to plan a trip.</li>
+            <li><strong>Free to use:</strong> An online currency converter is completely free to use and does not require a fee to pay.</li>
+        </ol>
+        
+        <h3><strong>What are the Currency Exchange Rates?</strong></h3>
+        <img src="C:/Users/manoj/Downloads/cc4.jpg" alt="Currency Converter" style="max-width: 60%; float: left; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
+
+        <p>The exchange rate is the cost of exchanging one currency for another. It is also known as a foreign exchange rate, forex rate, or FX rate.</p>
+        
+        <h3><strong>What is a Currency Exchange in India?</strong></h3>
+        <img src="C:/Users/manoj/Downloads/cc5.jpg" alt="Currency Converter" style="max-width: 60%; float: right; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
+
+        <p>The Foreign Exchange Management Act of June 2000 streamlined regulations governing currency exchange transactions.</p>
+        
+        <h3><strong>Currency Trading for Individual Investors</strong></h3>
+        <p>The currency market is a good investment opportunity for investors looking for an alternative to the stock market, fixed deposits, or other traditional forms of investment.</p>
+        
+        <h3><strong>Factors Affecting the Value of a Currency and its Exchange Rate</strong></h3>
+        <p>If you want to invest in the currency market, you must be aware of trends in international commerce, political and economic indices of other countries, international developments, and other factors that influence currency prices.</p>
+    </div>
+
+    <script>
+        // Function to make the container visible with a transition
+        function showContent() {
+            const content = document.getElementById('content');
+            content.classList.add('visible'); // Add the visible class to trigger the transition
+        }
+
+        // Show content on page load
+        window.onload = showContent;
+
+        // Handle exchange rate history link click
+        document.getElementById('exchange-rate-history-link').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            const exchangeRateHistory = document.getElementById('exchange-rate-history');
+            const homeHoverTab = document.getElementById('home-hover-tab');
+            homeHoverTab.classList.remove('visible'); // Hide the home hover tab
+            exchangeRateHistory.classList.toggle('visible'); // Toggle visibility of the exchange rate history hover tab
+        });
+
+        // Handle home hover tab link click
+        document.getElementById('home-hover-tab-link').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            const homeHoverTab = document.getElementById('home-hover-tab');
+            const exchangeRateHistory = document.getElementById('exchange-rate-history');
+            exchangeRateHistory.classList.remove('visible'); // Hide the exchange rate history hover tab
+            homeHoverTab.classList.toggle('visible'); // Toggle visibility of the home hover tab
+        });
+    </script>
+</body>
+</html>
