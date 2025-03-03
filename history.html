@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,68 +9,82 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-image: url('background.jpg'); /* Change to your image */
+            background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
             margin: 0;
             padding: 0;
         }
+
         nav {
-            background-color: #000000; /* Dark green for navigation bar */
+            background-color: #000000;
             padding: 10px;
         }
+
         nav a {
-            color: white; /* White text for links */
+            color: white;
             text-decoration: none;
             margin: 0 15px;
             font-size: 18px;
         }
+
         nav a:hover {
             text-decoration: underline;
-            color: #ffcc00; /* Change color on hover */
+            color: #ffcc00;
         }
+
         .container {
-            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for container */
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             margin: 50px auto;
         }
+
         h2 {
-            color: #2E8B57; /* Dark green for headings */
+            color: #2E8B57;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 10px;
+            text-align: center;
         }
+
         th {
-            background-color: #007BFF; /* Blue for table header */
+            background-color: #007BFF;
             color: white;
         }
+
         td {
-            color: #333; /* Dark gray for table data */
+            color: #333;
         }
+
         button {
             margin-top: 15px;
             padding: 10px;
-            background: #2E8B57; /* Dark green background for button */
-            color: white; /* White text for button */
+            background: #2E8B57;
+            color: white;
             border: none;
-            border-radius: 5px; /* Rounded corners for button */
+            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s; /* Smooth transition for background color */
+            transition: background-color 0.3s;
         }
+
         button:hover {
-            background: #1c5e3a; /* Darker green on hover */
+            background: #1c5e3a;
         }
     </style>
 </head>
+
 <body>
 
     <nav>
@@ -78,25 +93,6 @@
         <a href="history.html">History</a>
         <a href="settings.html">Settings</a>
     </nav>
-
-    <div class="container">
-        <h2>Currency Converter</h2>
-        <form id="converterForm">
-            <input type="number" id="amount" placeholder="Amount" required>
-            <select id="fromCurrency">
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <!-- Add more currencies as needed -->
-            </select>
-            <select id="toCurrency">
-                <option value="EUR">EUR</option>
-                <option value="USD">USD</option>
-                <!-- Add more currencies as needed -->
-            </select>
-            <button type="submit">Convert</button>
-        </form>
-        <div id="conversionResult"></div>
-    </div>
 
     <div class="container">
         <h2>Exchange Rate History</h2>
@@ -113,45 +109,11 @@
     </div>
 
     <script>
-        document.getElementById("converterForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent the form from submitting
-
-            const amount = parseFloat(document.getElementById("amount").value);
-            const fromCurrency = document.getElementById("fromCurrency").value;
-            const toCurrency = document.getElementById("toCurrency").value;
-
-            // Simulate conversion (replace this with actual conversion logic)
-            const conversionRate = 1.2; // Example conversion rate
-            const convertedAmount = (amount * conversionRate).toFixed(2);
-
-            // Display the result
-            document.getElementById("conversionResult").innerText = 
-                `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
-
-            // Save to history
-            saveToHistory(amount, fromCurrency, toCurrency, convertedAmount);
-            loadHistory(); // Refresh the history table
-        });
-
-        function saveToHistory(amount, from, to, convertedAmount) {
-            let history = JSON.parse(localStorage.getItem("exchangeHistory")) || [];
-            const entry = {
-                date: new Date().toLocaleString(),
-                amount: amount,
-                from: from,
-                to: to,
-                convertedAmount: convertedAmount
-            };
-            history.push(entry);
-            localStorage.setItem("exchangeHistory", JSON.stringify(history));
-        }
-
         function loadHistory() {
-            let history = JSON.parse(localStorage.getItem("exchangeHistory")) || [];
-            const table = document.getElementById("historyTable");
+            const historyTable = document.getElementById("historyTable");
 
             // Clear existing rows except for the header
-            table.innerHTML = `<tr>
+            historyTable.innerHTML = `<tr>
                 <th>Date</th>
                 <th>Amount</th>
                 <th>From</th>
@@ -159,25 +121,32 @@
                 <th>Converted Amount</th>
             </tr>`;
 
-            history.forEach(entry => {
+
+
+            // Iterate over numbered keys and add rows to the table
+            Object.keys(localStorage).forEach(key => {
+                const entry = localStorage[key]; // Example: "1, AED, USD, 0.27229407760381213"
+                const [amount, from, to, convertedAmount] = entry.split(', ');
+
                 let row = `<tr>
-                    <td>${entry.date}</td>
-                    <td>${entry.amount}</td>
-                    <td>${entry.from}</td>
-                    <td>${entry.to}</td>
-                    <td>${entry.convertedAmount}</td>
+                    <td>${new Date().toLocaleString()}</td> 
+                    <td>${amount}</td>
+                    <td>${from}</td>
+                    <td>${to}</td>
+                    <td>${convertedAmount}</td>
                 </tr>`;
-                table.innerHTML += row;
+                historyTable.innerHTML += row;
             });
         }
+
         function clearHistory() {
             localStorage.removeItem("exchangeHistory");
-            loadHistory(); 
+            loadHistory();
         }
 
         window.onload = loadHistory;
-    </script> -->
-    <script src="script.js"></script>
+    </script>
 
 </body>
+
 </html>
