@@ -1,7 +1,5 @@
 const apiKey = 'YOUR_API_KEY'; // Replace with a real API key
 
-let history = ""
-let btn=document.getElementById('btn')
 function currencyHistory(){
     // let history1=document.getElementById('history')
     // let data=document.createElement('P')
@@ -35,7 +33,9 @@ async function populateCurrencies() {
 }
 
 // Convert currency
+let id = 1
 async function convertCurrency() {
+
     let amount = document.getElementById('amount').value;
     let fromCurrency = document.getElementById('fromCurrency').value;
     let toCurrency = document.getElementById('toCurrency').value;
@@ -44,12 +44,14 @@ async function convertCurrency() {
         alert("Please enter an amount");
         return;
     }
+    let history = ""
 
     let rates = await fetchCurrencies();
     let result = (amount / rates[fromCurrency]) * rates[toCurrency];
     document.getElementById('result').innerText = result.toFixed(2);
     history+=amount+", " + fromCurrency+", "+toCurrency+", "+result;
-    console.log(history)
+    localStorage.setItem(id++, history);
+    console.log(localStorage);
 }
 
 // Display exchange rates table
